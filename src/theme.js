@@ -1,58 +1,64 @@
+// src/theme.js
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#1da1f2',
-        },
-        text: {
-            primary: '#14171a',
-            secondary: '#657786',
-        },
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#1da1f2',
     },
-    typography: {
-        fontFamily: ' "Helvetica Neue", Helvetica, Arial, sans-serif',
-        button: {
-            textTransform: 'none',
-        },
+    background: {
+      default: '#15202B', 
+      paper: '#192734',   
     },
-    shape: {
-        borderRadius: 8,
+    text: {
+      primary: '#fff',    
+      secondary: '#8899A6' 
     },
-    components: {
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    boxShadow: 'none',
-                },
-            },
-        },
-        MuiCard: {
-            styleOverrides: {
-                root: {
-                    border: 'none',
-                    borderRadius: 0,
-                    backgroundColor: '#fff',
-                    color: '#14171a',
-                    boxShadow: 'none',
-                    borderBottom: '1px solid #e1e8ed',
-                },
-            },
-        },
-        MuiCardHeader: {
-            styleOverrides: {
-                root: {
-                    padding: '8px 16px',
-                },
-                title: {
-                    fontWeight: 700,
-                },
-                subheader: {
-                    color: '#657786',
-                },
-            },
-        },
+  },
+  typography: {
+    fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+    button: {
+      textTransform: 'none',
     },
+  },
+  shape: {
+    borderRadius: 8,
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          border: 'none',
+          borderRadius: 0,
+          backgroundColor: '#192734',
+          color: '#fff',
+          boxShadow: 'none',
+          borderBottom: '1px solid #38444d',
+        },
+      },
+    },
+    MuiCardHeader: {
+      styleOverrides: {
+        root: {
+          padding: '8px 16px',
+        },
+        title: {
+          fontWeight: 700,
+        },
+        subheader: {
+          color: '#8899A6',
+        },
+      },
+    },
+  },
 });
 
 export default theme;

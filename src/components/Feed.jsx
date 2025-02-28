@@ -1,14 +1,17 @@
-// src/components/Feed.jsx
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Tweet from './Tweet';
 import ComposeTweet from './ComposeTweet';
 
+const userAvatar = 'https://i.pravatar.cc/50?u=Sally';
+const johnAvatarIndex = 12;
+const janeAvatarIndex = 39;
+
 const Feed = () => {
   const [tweets, setTweets] = useState([
     {
       id: 1,
-      avatar: 'https://via.placeholder.com/50',
+      avatar: `https://i.pravatar.cc/50?img=${johnAvatarIndex}`,
       name: 'John Doe',
       handle: 'johndoe',
       timestamp: '2h',
@@ -17,7 +20,7 @@ const Feed = () => {
     },
     {
       id: 2,
-      avatar: 'https://via.placeholder.com/50',
+      avatar: `https://i.pravatar.cc/50?img=${janeAvatarIndex}`,
       name: 'Jane Smith',
       handle: 'janesmith',
       timestamp: '3h',
@@ -29,7 +32,7 @@ const Feed = () => {
   const addTweet = (content) => {
     const newTweet = {
       id: Date.now(),
-      avatar: 'https://via.placeholder.com/50',
+      avatar: userAvatar,
       name: 'Your Name',
       handle: 'yourhandle',
       timestamp: 'Just now',
@@ -40,9 +43,11 @@ const Feed = () => {
   };
 
   const handleLike = (id) => {
-    setTweets(tweets.map(tweet =>
-      tweet.id === id ? { ...tweet, likes: tweet.likes + 1 } : tweet
-    ));
+    setTweets(
+      tweets.map(tweet =>
+        tweet.id === id ? { ...tweet, likes: tweet.likes + 1 } : tweet
+      )
+    );
   };
 
   return (

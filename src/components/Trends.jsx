@@ -8,7 +8,7 @@ const Trends = () => {
   const trends = [
     { id: 1, topic: '#React', tweets: 12000 },
     { id: 2, topic: '#JavaScript', tweets: 15000 },
-    { id: 3, topic: '#Vite', tweets: 8000 },
+    { id: 3, topic: '#HiringThePersonThatMadeThis', tweets: 8000 },
   ];
 
   return (

@@ -1,4 +1,3 @@
-// src/components/ComposeTweet.jsx
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -16,7 +15,17 @@ const ComposeTweet = ({ onSubmit }) => {
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ p: 2, mb: 2, border: '1px solid #e1e8ed', borderRadius: 2 }}>
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{
+        p: 2,
+        mb: 2,
+        backgroundColor: 'background.paper',
+        border: '1px solid #38444d',
+        borderRadius: 2,
+      }}
+    >
       <TextField
         fullWidth
         multiline
@@ -25,6 +34,15 @@ const ComposeTweet = ({ onSubmit }) => {
         value={content}
         onChange={(e) => setContent(e.target.value)}
         variant="outlined"
+        sx={{
+          backgroundColor: 'background.paper',
+          '& .MuiInputBase-root': {
+            color: 'text.primary',
+          },
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#38444d',
+          },
+        }}
       />
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
         <Button type="submit" variant="contained" color="primary">
