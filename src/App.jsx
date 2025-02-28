@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from './components/Sidebar';
 import Box from '@mui/material/Box';
 import Home from './components/pages/Home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const App = () => {
   return (
