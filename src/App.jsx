@@ -9,16 +9,23 @@ import Box from '@mui/material/Box';
 const App = () => {
   return (
     <Router>
-      <Box sx={{ display: 'flex', maxWidth: '1300px', margin: '0 auto', width: '100%', height: '100vh', backgroundColor: '#f5f8fa' }}>
-        <Sidebar />
+      <Box sx={{ display: 'flex', justifyContent: 'center', maxWidth: '1500px', margin: '0 auto', width: '100%', minHeight: '100vh', backgroundColor: '#f5f8fa' }}>
+        <Box
+          sx={{ display: 'flex', width: '100%', maxWidth: '1300px', px: 2}}>
+            <Box sx={{ width: 250, mr: 2 }}>
+              <Sidebar />
+            </Box>
+            <Box sx={{ flex: 1, maxWidth: 600, mr: 2 }}>
         <Routes>
           <Route path="/" element={<Home />} />
           {/* More routes can be added here */}
         </Routes>
+      </Box>
         <Box sx={{ width: 350, p: 2 }}>
           <Trends />
         </Box>
       </Box>
+    </Box>
     </Router>
   );
 };
