@@ -16,8 +16,17 @@ const Tweet = ({ tweet, onLike }) => {
     <Card sx={{ mb: 2 }}>
         <CardHeader
         avatar={<Avatar src={tweet.avatar} alt={tweet.name} />}
-        title={tweet.name}
-        subhearder={`@${tweet.handle} • ${tweet.timestamp}`}
+        title={<Typography variant="body1" sx = {{ fontWeight: 700 }}>
+        {tweet.name}{' '}
+        <Typography
+            component="span"
+            variant="body2"
+            color="text.secondary"
+            sx={{ ml: 1 }}
+            >
+            @{tweet.handle} · {tweet.timestamp}
+        </Typography>
+        </Typography>}
         />
         <CardContent>
             <Typography variant="body1">

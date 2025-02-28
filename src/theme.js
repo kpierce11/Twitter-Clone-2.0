@@ -30,10 +30,25 @@ const theme = createTheme({
         MuiCard: {
             styleOverrides: {
                 root: {
+                    border: 'none',
+                    borderRadius: 0,
                     backgroundColor: '#fff',
                     color: '#14171a',
                     boxShadow: 'none',
                     borderBottom: '1px solid #e1e8ed',
+                },
+            },
+        },
+        MuiCardHeader: {
+            styleOverrides: {
+                root: {
+                    padding: '8px 16px',
+                },
+                title: {
+                    fontWeight: 700,
+                },
+                subheader: {
+                    color: '#657786',
                 },
             },
         },
