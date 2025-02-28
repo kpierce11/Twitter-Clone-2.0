@@ -15,10 +15,10 @@ import TextField from '@mui/material/TextField';
 const Tweet = ({ tweet, onToggleLike, onReplySubmit }) => {
   const [showReplyBox, setShowReplyBox] = useState(false);
   const [replyContent, setReplyContent] = useState('');
-  
+
   const handleReplySubmit = (e) => {
     e.preventDefault();
-    if(replyContent.trim()){
+    if (replyContent.trim()) {
       onReplySubmit(tweet.id, replyContent);
       setReplyContent('');
       setShowReplyBox(false);
@@ -47,7 +47,7 @@ const Tweet = ({ tweet, onToggleLike, onReplySubmit }) => {
         <Button onClick={() => setShowReplyBox(!showReplyBox)}>Reply</Button>
       </CardActions>
       {showReplyBox && (
-        <Box component="form" onSubmit={handleReplySubmit} sx={{ pl: 4, pb: 2 }}>
+        <Box component="form" onSubmit={handleReplySubmit} sx={{ pl: 4, pr: 4, pb: 2 }}>
           <TextField
             fullWidth
             multiline
