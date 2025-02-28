@@ -5,6 +5,14 @@ import Avatar from '@mui/material/Avatar';
 
 const Sidebar = () => {
     return (
+        <Box>
+        <Box sx={{ mb: 3}}>
+            <img
+            src="src/assets/twitter-bird.svg"
+            alt="Twitter Logo"
+            style={{ width: '40px', cursor: 'pointer' }}
+            />
+        </Box>
         <Box sx={{ width: 250, p: 2, borderRight: '1px solid #e1e8ed' }}>
             <Typography variant="h6" sx={{ mb: 2, cursor: 'pointer' }}>Home</Typography>
             <Typography variant="h6" sx={{ mb: 2, cursor: 'pointer' }}>Explore</Typography>
@@ -18,6 +26,7 @@ const Sidebar = () => {
                 <Typography variant="body2" color="text.secondary">@yourhandle</Typography>
                 </Box>
             </Box>
+        </Box>
         </Box>
     );
 };
