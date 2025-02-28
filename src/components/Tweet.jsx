@@ -5,7 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import RepeatIcon from '@mui/icons-material/Repeat';
+import IosShareIcon from '@mui/icons-material/IosShare';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import IconButton from '@mui/material/IconButton';
 
 const Tweet = ({ tweet, onLike }) => {
     return (
@@ -21,9 +25,11 @@ const Tweet = ({ tweet, onLike }) => {
             </Typography>
         </CardContent>
         <CardActions>
-            <Button size="small" onClick={() => onLike(tweet.id)}>Like {tweet.likes}</Button>
-            <Button size="small">Reply</Button>
-            <Button size="small">Retweet</Button>    
+            <IconButton size="small"><ChatBubbleOutlineIcon fontSize="small" /></IconButton>
+            <IconButton size="small"><RepeatIcon fontSize="small" /></IconButton>
+            <IconButton size="small" onClick={() => onLike(tweet.id)}><FavoriteBorderIcon fontSize="small" />
+            <span style={{ marginLeft: 4 }}>{tweet.likes}</span></IconButton>
+            <IconButton size="small"><IosShareIcon fontSize="small" /></IconButton>
         </CardActions>
     </Card>
     );
