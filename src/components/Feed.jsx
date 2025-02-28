@@ -17,6 +17,8 @@ const Feed = () => {
       timestamp: '2h',
       content: 'This is my first tweet!',
       likes: 0,
+      liked: false,
+      replies: []
     },
     {
       id: 2,
@@ -26,7 +28,9 @@ const Feed = () => {
       timestamp: '3h',
       content: 'Is this thing on?',
       likes: 2,
-    },
+      liked: false,
+      replies: []
+    }
   ]);
 
   const addTweet = (content) => {
@@ -38,15 +42,40 @@ const Feed = () => {
       timestamp: 'Just now',
       content,
       likes: 0,
+      liked: false,
+      replies: []
     };
     setTweets([newTweet, ...tweets]);
   };
 
-  const handleLike = (id) => {
+  const toggleLike = (id) => {
     setTweets(
-      tweets.map(tweet =>
-        tweet.id === id ? { ...tweet, likes: tweet.likes + 1 } : tweet
-      )
+      tweets.map(tweet => {
+        if(tweet.id === id){
+          return tweet.liked
+            ? { ...tweet, liked: false, likes: tweet.likes - 1 }
+            : { ...tweet, liked: true, likes: tweet.likes + 1 };
+        }
+        return tweet;
+      })
+    );
+  };
+
+  const addReply = (tweetId, replyContent) => {
+    const newReply = {
+      id: Date.now(),
+      avatar: userAvatar,
+      name: 'Your Name',
+      handle: 'yourhandle',
+      content: replyContent,
+    };
+    setTweets(
+      tweets.map(tweet => {
+        if(tweet.id === tweetId){
+          return { ...tweet, replies: [...tweet.replies, newReply] };
+        }
+        return tweet;
+      })
     );
   };
 
@@ -54,7 +83,7 @@ const Feed = () => {
     <Box sx={{ flex: 1, maxWidth: 600, p: 2 }}>
       <ComposeTweet onSubmit={addTweet} />
       {tweets.map(tweet => (
-        <Tweet key={tweet.id} tweet={tweet} onLike={handleLike} />
+        <Tweet key={tweet.id} tweet={tweet} onToggleLike={toggleLike} onReplySubmit={addReply} />
       ))}
     </Box>
   );

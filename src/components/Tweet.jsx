@@ -1,47 +1,90 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import RepeatIcon from '@mui/icons-material/Repeat';
-import IosShareIcon from '@mui/icons-material/IosShare';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IconButton from '@mui/material/IconButton';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
-const Tweet = ({ tweet, onLike }) => {
-    return (
+const Tweet = ({ tweet, onToggleLike, onReplySubmit }) => {
+  const [showReplyBox, setShowReplyBox] = useState(false);
+  const [replyContent, setReplyContent] = useState('');
+  
+  const handleReplySubmit = (e) => {
+    e.preventDefault();
+    if(replyContent.trim()){
+      onReplySubmit(tweet.id, replyContent);
+      setReplyContent('');
+      setShowReplyBox(false);
+    }
+  };
+
+  return (
     <Card sx={{ mb: 2 }}>
-        <CardHeader
+      <CardHeader
         avatar={<Avatar src={tweet.avatar} alt={tweet.name} />}
-        title={<Typography variant="body1" sx = {{ fontWeight: 700 }}>
-        {tweet.name}{' '}
-        <Typography
-            component="span"
-            variant="body2"
-            color="text.secondary"
-            sx={{ ml: 1 }}
-            >
-            @{tweet.handle} · {tweet.timestamp}
+        title={tweet.name}
+        subheader={`@${tweet.handle} • ${tweet.timestamp}`}
+      />
+      <CardContent>
+        <Typography variant="body1" color="text.primary">
+          {tweet.content}
         </Typography>
-        </Typography>}
-        />
-        <CardContent>
-            <Typography variant="body1">
-                {tweet.content}
+      </CardContent>
+      <CardActions>
+        <IconButton onClick={() => onToggleLike(tweet.id)}>
+          {tweet.liked ? <FavoriteIcon sx={{ color: 'red' }} /> : <FavoriteBorderIcon />}
+        </IconButton>
+        <Typography variant="body2" color="text.secondary">
+          {tweet.likes}
+        </Typography>
+        <Button onClick={() => setShowReplyBox(!showReplyBox)}>Reply</Button>
+      </CardActions>
+      {showReplyBox && (
+        <Box component="form" onSubmit={handleReplySubmit} sx={{ pl: 4, pb: 2 }}>
+          <TextField
+            fullWidth
+            multiline
+            rows={2}
+            placeholder="Tweet your reply"
+            value={replyContent}
+            onChange={(e) => setReplyContent(e.target.value)}
+            variant="outlined"
+            sx={{
+              backgroundColor: 'background.paper',
+              '& .MuiInputBase-root': { color: 'text.primary' },
+              '& .MuiOutlinedInput-notchedOutline': { borderColor: '#38444d' },
+            }}
+          />
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
+            <Button type="submit" variant="contained" color="primary">
+              Reply
+            </Button>
+          </Box>
+        </Box>
+      )}
+      {tweet.replies && tweet.replies.map(reply => (
+        <Card key={reply.id} sx={{ ml: 4, mb: 1 }}>
+          <CardHeader
+            avatar={<Avatar src={reply.avatar} alt={reply.name} />}
+            title={reply.name}
+            subheader={`@${reply.handle}`}
+          />
+          <CardContent>
+            <Typography variant="body2" color="text.primary">
+              {reply.content}
             </Typography>
-        </CardContent>
-        <CardActions>
-            <IconButton size="small"><ChatBubbleOutlineIcon fontSize="small" /></IconButton>
-            <IconButton size="small"><RepeatIcon fontSize="small" /></IconButton>
-            <IconButton size="small" onClick={() => onLike(tweet.id)}><FavoriteBorderIcon fontSize="small" />
-            <span style={{ marginLeft: 4 }}>{tweet.likes}</span></IconButton>
-            <IconButton size="small"><IosShareIcon fontSize="small" /></IconButton>
-        </CardActions>
+          </CardContent>
+        </Card>
+      ))}
     </Card>
-    );
+  );
 };
 
 export default Tweet;
