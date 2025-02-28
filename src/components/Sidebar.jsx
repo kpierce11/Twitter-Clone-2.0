@@ -24,11 +24,13 @@ const Sidebar = () => {
       }}
     >
       <Box sx={{ mb: 3 }}>
-        <img
-          src="src/assets/twitter-bird.svg"
-          alt="Twitter Logo"
-          style={{ width: '40px', cursor: 'pointer' }}
-        />
+        <a href="/" style={{ textDecoration: 'none' }}>
+          <img
+            src="src/assets/twitter-bird.svg"
+            alt="Twitter Logo"
+            style={{ width: '40px', cursor: 'pointer' }}
+          />
+        </a>
       </Box>
       <Box
         sx={{
